@@ -1,14 +1,11 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-
-const Container = styled.div`
-  padding: 12px 64px;
-`
+import { TabBodyContainer } from './components/tab-body-container';
 
 const ListItem = styled.div`
   padding: 8px 16px;
 
-  &:nth-child(n+2) {
+  &:nth-child(n+3) {
     border-top: 1px solid #D9DBDE;
   }
 `
@@ -25,12 +22,12 @@ export const List = ({ langs }) => {
   // })
 
   return (
-    <Container>
+    <TabBodyContainer title="Languages List">
       {
         langs.map((lang, index) => {
           return <ListItem key={index}>{ lang }</ListItem>
         })
       }
-    </Container>
+    </TabBodyContainer>
   )
 }
