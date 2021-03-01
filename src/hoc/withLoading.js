@@ -1,13 +1,18 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const LoadDiv = styled.div`
+  height: 100%auto;
   padding: 36px;
+  color: ${({ theme }) => theme.color};
+  background-color: ${({ theme }) => theme.backgroundColor};
 `
 
 export const withLoading = (WrappedComponents, fetchData) => {
   return () => {
     const [data, setData] = useState(null)
+    const [theme] = useContext(ThemeContext);
 
     useEffect(() => {
       fetch();
@@ -19,7 +24,7 @@ export const withLoading = (WrappedComponents, fetchData) => {
     }
     
     const Loadig = (
-      <LoadDiv>Loading...</LoadDiv>
+      <LoadDiv theme={theme}>Loading...</LoadDiv>
     )
 
     return data ? <WrappedComponents data={data} /> : Loadig;
